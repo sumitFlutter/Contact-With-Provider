@@ -56,7 +56,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
                           child: Stack(
                             alignment: Alignment.center,
                             children: [
-                              providerW!.path == null
+                              providerW!.path ==  "assets/image/profile.png"
                                   ? const CircleAvatar(
                                 radius: 60,
                                 backgroundImage: AssetImage(
@@ -158,7 +158,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
                             Contact c2 = Contact(
                                 email: txtE.text,
                                 mobile: txtMobile.text,
-                                image: providerR!.path == null
+                                image: providerR!.path ==  "assets/image/profile.png"
                                     ? "assets/image/profile.png"
                                     : providerR!.path,
                                 name: txtName.text);
@@ -166,12 +166,13 @@ class _AddDataScreenState extends State<AddDataScreen> {
                             txtName.clear();
                             txtMobile.clear();
                             txtE.clear();
-
                             ScaffoldMessenger.of(context)!.showSnackBar(
                                 SnackBar(
                                     content: Text("Your Contact is saved")));
                             Future.delayed(Duration(seconds: 1),
                                     () => Navigator.pop(context));
+                            providerR!.path= "assets/image/profile.png";
+                            providerR!.step=1;
                           }
                         }
                         else{
