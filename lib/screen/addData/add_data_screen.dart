@@ -64,7 +64,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
                               )
                                   : CircleAvatar(
                                 radius: 60,
-                                backgroundImage: FileImage(File(providerR!.path!)),
+                                backgroundImage: FileImage(File(providerW!.path!)),
                               ),
                               Align(
                                   alignment: const Alignment(0.8, 0.8),
@@ -73,7 +73,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
                                       ImagePicker picker = ImagePicker();
                                       XFile? image = await picker.pickImage(
                                           source: ImageSource.camera);
-                                        providerR!.path = image!.path;
+                                        providerR?.addPath(image!.path);
                                     },
                                     icon: const Icon(
                                       Icons.add_a_photo_rounded,
@@ -87,7 +87,7 @@ class _AddDataScreenState extends State<AddDataScreen> {
                                       ImagePicker picker = ImagePicker();
                                       XFile? image = await picker.pickImage(
                                           source: ImageSource.gallery);
-                                      providerR!.path = image!.path;
+                                      providerR?.addPath(image!.path);
                                     },
                                     icon: const Icon(
                                       Icons.photo,
