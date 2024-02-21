@@ -7,7 +7,7 @@ class Provider1 with ChangeNotifier
   List<Contact> contactList=[
   ];
   bool theme=false;
-  String? path;
+  String? path= "assets/image/profile.png";
   ThemeMode mode=ThemeMode.light;
   int step=0;
   void cancelStep()
