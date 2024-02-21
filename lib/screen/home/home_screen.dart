@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:contact_info/screen/providers/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../../model/contact_model.dart';
+import '../providers/provider.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -281,9 +281,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               Container(
                                 child: IconButton(
                                     onPressed: () {
-                                      setState(() {
-                                        providerW!.contactList.removeAt(index);
-                                      });
+
+                                        providerR!.remove(index);
                                     },
                                     icon: const Icon(Icons.delete)),
                               ),

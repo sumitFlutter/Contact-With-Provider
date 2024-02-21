@@ -43,4 +43,14 @@ class Provider1 with ChangeNotifier
     contactList.add(c1);
     notifyListeners();
   }
+  void addPath(String p1)
+  {
+    path=p1;
+    notifyListeners();
+  }
+  void remove(int index)
+  {
+    contactList.removeAt(index);
+    notifyListeners();
+  }
 }
