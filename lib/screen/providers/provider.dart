@@ -54,7 +54,6 @@ class Provider1 with ChangeNotifier
   }
   void getTheme()
   async{
-    saveTheme(pTheme: theme!);
     pTheme=(await applyTheme())!;
     if(pTheme==true)
     {
