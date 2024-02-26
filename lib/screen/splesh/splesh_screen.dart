@@ -20,12 +20,9 @@ class _SpleshState extends State<SpleshScreen_> {
   }
   @override
   Widget build(BuildContext context) {
-    providerR=context.read<Provider1>();
-    providerR!.getTheme();
-    providerR!.theme=providerR!.pTheme;
     return SafeArea(child: Scaffold(
       body: Column(
-       mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(child: Image.asset("assets/logo/logo.png",height: 120,width: 120,fit: BoxFit.cover,)),
           const SizedBox(height: 5,),
