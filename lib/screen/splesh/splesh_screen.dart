@@ -22,6 +22,7 @@ class _SpleshState extends State<SpleshScreen_> {
   Widget build(BuildContext context) {
     providerR=context.read<Provider1>();
     providerR!.getTheme();
+    providerR!.theme=providerR!.pTheme;
     return SafeArea(child: Scaffold(
       body: Column(
        mainAxisAlignment: MainAxisAlignment.center,
