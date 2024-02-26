@@ -7,7 +7,7 @@ class Provider1 with ChangeNotifier
 {
   List<Contact> contactList=[
   ];
-  bool? theme=false;
+  bool theme=false;
   String? path= "assets/image/profile.png";
   ThemeMode mode=ThemeMode.light;
   bool? pTheme;
@@ -31,7 +31,7 @@ class Provider1 with ChangeNotifier
   }
   void setTheme()
   async {
-    theme=!theme!;
+    theme=!theme;
     saveTheme(pTheme: theme!);
     pTheme=(await applyTheme())!;
     if(pTheme==true)
