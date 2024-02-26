@@ -17,6 +17,8 @@ void main()
       ],
       child: Consumer<Provider1>(
         builder:  (context, value,child) {
+          value.getTheme();
+          value.theme=value.pTheme;
           return
           MaterialApp(
             debugShowCheckedModeBanner: false,
