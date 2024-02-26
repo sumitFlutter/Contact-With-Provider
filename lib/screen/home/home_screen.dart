@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
           style: Theme.of(context).textTheme.titleLarge
         ),
         actions: [
-          IconButton(onPressed: () => providerR!.setTheme(), icon: Icon(providerW!.theme?Icons.light_mode:Icons.dark_mode))
+          IconButton(onPressed: () => providerR!.setTheme(), icon: Icon(providerW!.themeMode))
         ],
       ),
       body: Padding(

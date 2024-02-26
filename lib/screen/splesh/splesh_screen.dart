@@ -1,4 +1,7 @@
+import 'package:contact_info/screen/providers/provider.dart';
+import 'package:contact_info/utils/shared_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SpleshScreen_ extends StatefulWidget {
   const SpleshScreen_({super.key});
@@ -8,6 +11,7 @@ class SpleshScreen_ extends StatefulWidget {
 }
 
 class _SpleshState extends State<SpleshScreen_> {
+  Provider1? providerR;
   @override
   void initState() {
     // TODO: implement initState
@@ -16,6 +20,8 @@ class _SpleshState extends State<SpleshScreen_> {
   }
   @override
   Widget build(BuildContext context) {
+    providerR=context.read<Provider1>();
+    providerR!.getTheme();
     return SafeArea(child: Scaffold(
       body: Column(
        mainAxisAlignment: MainAxisAlignment.center,
