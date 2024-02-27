@@ -71,7 +71,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       children: [
                         InkWell(
                           onTap: () async{
-                            Uri mail= Uri.parse("mailto :${c2!.email}");
+                            Uri mail= Uri.parse("mailto:${c2!.email}");
                             await launchUrl(mail);
                           },
                             child: CircleAvatar(child: Icon(Icons.mail,size: 25,color: Colors.white,),backgroundColor: Colors.blue,radius: 20,)),
@@ -87,7 +87,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     Column(
                       children: [
                         InkWell(onTap: () async {
-                          Uri call= Uri.parse("tel : +91${c2!.mobile}");
+                          Uri call= Uri.parse("tel:+91${c2!.mobile}");
                           await launchUrl(call);
                         },
                             child: const CircleAvatar(child: Icon(Icons.call,size: 25,color: Colors.white,),backgroundColor: Colors.green,radius: 20,)),

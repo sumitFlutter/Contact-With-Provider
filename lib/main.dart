@@ -17,6 +17,7 @@ void main()
       ],
       child: Consumer<Provider1>(
         builder:  (context, value,child) {
+          value.getIntroStatus();
           value.getTheme();
           value.theme=value.pTheme;
           return
@@ -25,7 +26,7 @@ void main()
             theme: light,
             darkTheme: dark,
             themeMode: value.mode,
-            routes: myRouts,
+            routes: value.introScreen==true?myRouts1:myRouts,
           );
         },
       ),
