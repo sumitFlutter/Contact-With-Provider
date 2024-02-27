@@ -14,26 +14,35 @@ class IntroScreen extends StatefulWidget {
 class _IntroScreenState extends State<IntroScreen> {
   Provider1? providerR;
   final _introKey = GlobalKey<IntroductionScreenState>();
+
   @override
   Widget build(BuildContext context) {
-    providerR=context.read<Provider1>();
+    providerR = context.read<Provider1>();
     return IntroductionScreen(
       key: _introKey,
       pages: [
         PageViewModel(
-          title: "Welcome To Contact App",
-          bodyWidget: ElevatedButton(onPressed:() {
-            providerR!.introToggle();
-            Navigator.pushReplacementNamed(context, "splesh");
-          },
-          child: Text("next"),),
+          useScrollView: false,
+          title: "Demo of ContactViewScreen",
+          bodyWidget: Column(
+            children: [
+              Image.asset(providerR!.introImage,height: MediaQuery.sizeOf(context).height*0.7,width: MediaQuery.sizeOf(context).width,fit: BoxFit.fill,),
+            ],
+          ),
 
-        )
+        ),
       ],
-      showDoneButton: false,
+      showSkipButton: true,
       showNextButton: false,
-      showBackButton: false,
-      showSkipButton: false,
+      skip: const Text("Skip",style: TextStyle(color: Colors.grey),),
+      onSkip: () {
+        Navigator.pushReplacementNamed(context, "home");
+      },
+      done: const Text("Done"),
+      onDone: () {
+        providerR!.introToggle();
+        Navigator.pushReplacementNamed(context, "home");
+      },
     );
   }
 }
