@@ -5,6 +5,7 @@ import '../../model/contact_model.dart';
 
 class Provider1 with ChangeNotifier
 {
+  bool intro=false;
   List<Contact> contactList=[
   ];
   bool theme=false;
@@ -13,6 +14,7 @@ class Provider1 with ChangeNotifier
   bool pTheme=false;
   IconData themeMode=Icons.dark_mode;
   int step=0;
+  bool introScreen=false;
   void cancelStep()
   {
     if(step>0)
@@ -84,6 +86,17 @@ class Provider1 with ChangeNotifier
   void remove(int index)
   {
     contactList.removeAt(index);
+    notifyListeners();
+  }
+  void getIntroStatus()
+  async {
+    introScreen=(await scanIntro())!;
+    notifyListeners();
+  }
+  void introToggle()
+  {
+    intro=!intro;
+    getIntro(pIntro: intro);
     notifyListeners();
   }
 }
