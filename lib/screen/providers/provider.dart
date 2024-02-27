@@ -5,7 +5,6 @@ import '../../model/contact_model.dart';
 
 class Provider1 with ChangeNotifier
 {
-  bool intro=false;
   List<Contact> contactList=[
   ];
   bool theme=false;
@@ -15,6 +14,7 @@ class Provider1 with ChangeNotifier
   IconData themeMode=Icons.dark_mode;
   int step=0;
   bool introScreen=false;
+  String introImage="assets/image/1.png";
   void cancelStep()
   {
     if(step>0)
@@ -60,16 +60,19 @@ class Provider1 with ChangeNotifier
     {
       mode=ThemeMode.dark;
       themeMode=Icons.light_mode;
+      introImage="assets/image/2.png";
     }
     else if(pTheme==false)
     {
       mode=ThemeMode.light;
       themeMode=Icons.dark_mode;
+      introImage="assets/image/1.png";
     }
     else
     {
       mode=ThemeMode.light;
       themeMode=Icons.dark_mode;
+      introImage="assets/image/1.png";
     }
     notifyListeners();
   }
@@ -90,13 +93,13 @@ class Provider1 with ChangeNotifier
   }
   void getIntroStatus()
   async {
-    introScreen=(await scanIntro())!;
-    notifyListeners();
+    introScreen=(await getIntro())??false;
+
+    print("=============$introScreen");
   }
   void introToggle()
   {
-    intro=!intro;
-    getIntro(pIntro: intro);
-    notifyListeners();
+    introScreen=true;
+    setIntro(pIntro: introScreen);
   }
 }

@@ -11,12 +11,11 @@ class SpleshScreen_ extends StatefulWidget {
 }
 
 class _SpleshState extends State<SpleshScreen_> {
-  Provider1? providerR;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    Future.delayed(Duration(seconds: 3),() => Navigator.pushReplacementNamed(context, "home"),);
+    context.read<Provider1>().getIntroStatus();
+    Future.delayed(Duration(seconds: 3),() => Navigator.pushReplacementNamed(context, context.read<Provider1>().introScreen?"home":"intro"),);
   }
   @override
   Widget build(BuildContext context) {
