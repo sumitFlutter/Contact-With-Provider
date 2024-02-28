@@ -7,6 +7,7 @@ class Provider1 with ChangeNotifier
 {
   List<Contact> contactList=[
   ];
+  String? editI;
   bool theme=false;
   String? path= "assets/image/profile.png";
   ThemeMode mode=ThemeMode.light;
@@ -55,7 +56,14 @@ class Provider1 with ChangeNotifier
   }
   void getTheme()
   async{
-    pTheme=(await applyTheme())!;
+    if(await applyTheme()==null)
+      {
+        pTheme=false;
+      }
+    else
+      {
+        pTheme=(await applyTheme())!;
+      }
     if(pTheme==true)
     {
       mode=ThemeMode.dark;
@@ -101,5 +109,20 @@ class Provider1 with ChangeNotifier
   {
     introScreen=true;
     setIntro(pIntro: introScreen);
+  }
+  void editP1(int index)
+  {
+    editI=contactList[index].image;
+    notifyListeners();
+  }
+  void editP2(String image1)
+  {
+    editI=image1;
+    notifyListeners();
+  }
+  void updateContact({required int index,required Contact c3})
+  {
+    contactList[index]=c3;
+    notifyListeners();
   }
 }
