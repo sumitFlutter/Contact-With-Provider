@@ -1,3 +1,4 @@
+import 'package:contact_info/screen/hidden/hidden_screen.dart';
 import 'package:contact_info/screen/intro/intro_screen.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -12,4 +13,5 @@ Map <String,WidgetBuilder> myRouts={
   "home":(context) => const HomeScreen(),
   "add":(context) => const AddDataScreen(),
   "view":(context) => const DetailsScreen(),
+  "hide":(context) => HiddenScreen(),
 };

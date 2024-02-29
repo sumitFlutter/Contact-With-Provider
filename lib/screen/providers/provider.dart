@@ -1,10 +1,12 @@
 import 'package:contact_info/utils/shared_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:local_auth/local_auth.dart';
 
 import '../../model/contact_model.dart';
 
 class Provider1 with ChangeNotifier
 {
+  LocalAuthentication auth = LocalAuthentication();
   List<Contact> contactList=[
   ];
   String? editI;
@@ -123,6 +125,23 @@ class Provider1 with ChangeNotifier
   void updateContact({required int index,required Contact c3})
   {
     contactList[index]=c3;
+    notifyListeners();
+  }
+  Future<bool?> lock()
+  async{
+    bool check = await auth.canCheckBiometrics;
+    if(check==true)
+      {
+        List<BiometricType> l1 = await auth.getAvailableBiometrics();
+        if(l1.isNotEmpty)
+          {
+            final bool mainV = await auth.authenticate(
+                localizedReason: 'Please authenticate to show account balance',
+                options: const AuthenticationOptions(biometricOnly: true));
+            return mainV;
+          }
+      }
+
     notifyListeners();
   }
 }

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
 
 import '../../model/contact_model.dart';
@@ -37,6 +38,13 @@ class _HomeScreenState extends State<HomeScreen> {
           style: Theme.of(context).textTheme.titleLarge
         ),
         actions: [
+          IconButton.filledTonal(onPressed: () {
+            providerR!.lock();
+            if(providerR!.lock()==true)
+              {
+                Navigator.pushNamed(context, "hide");
+              }
+          }, icon: Icon(Icons.lock)),
           IconButton(onPressed: () => providerR!.setTheme(), icon: Icon(providerW!.themeMode))
         ],
       ),
