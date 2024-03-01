@@ -38,9 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
           style: Theme.of(context).textTheme.titleLarge
         ),
         actions: [
-          IconButton.filledTonal(onPressed: () {
-            providerR!.lock();
-            if(providerR!.lock()==true)
+          IconButton.filledTonal(onPressed: () async{
+            bool? hide = await providerR!.lock() ;
+            if(hide==true)
               {
                 Navigator.pushNamed(context, "hide");
               }

@@ -129,19 +129,22 @@ class Provider1 with ChangeNotifier
   }
   Future<bool?> lock()
   async{
+    bool mainV=false;
     bool check = await auth.canCheckBiometrics;
-    if(check==true)
+    if(check)
       {
         List<BiometricType> l1 = await auth.getAvailableBiometrics();
         if(l1.isNotEmpty)
           {
-            final bool mainV = await auth.authenticate(
+            mainV = await auth.authenticate(
                 localizedReason: 'Please authenticate to show account balance',
-                options: const AuthenticationOptions(biometricOnly: true));
+                options: const AuthenticationOptions(useErrorDialogs: true));
             return mainV;
           }
       }
+    return null;
 
-    notifyListeners();
   }
+  @override
+  notifyListeners();
 }
