@@ -9,6 +9,8 @@ class Provider1 with ChangeNotifier
   LocalAuthentication auth = LocalAuthentication();
   List<Contact> contactList=[
   ];
+  List<Contact> hiddenContactList=[
+  ];
   String? editI;
   bool theme=false;
   String? path= "assets/image/profile.png";
@@ -145,6 +147,11 @@ class Provider1 with ChangeNotifier
     return null;
 
   }
-  @override
-  notifyListeners();
+  void createHidden(int index)
+  {
+    hiddenContactList.add(contactList[index]);
+    contactList.removeAt(index);
+    notifyListeners();
+
+  }
 }
