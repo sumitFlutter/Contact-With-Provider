@@ -23,7 +23,7 @@ class _HiddenScreenState extends State<HiddenScreen> {
         child: Scaffold(
           appBar: AppBar(
             title: Text(
-                "My Contacts",
+                "My  Hidden Contacts",
                 style: Theme.of(context).textTheme.titleLarge
             ),
           ),
