@@ -9,6 +9,8 @@ class Provider1 with ChangeNotifier
   LocalAuthentication auth = LocalAuthentication();
   List<Contact> contactList=[
   ];
+  List<Contact> hiddenContactList=[
+  ];
   String? editI;
   bool theme=false;
   String? path= "assets/image/profile.png";
@@ -129,19 +131,27 @@ class Provider1 with ChangeNotifier
   }
   Future<bool?> lock()
   async{
+    bool mainV=false;
     bool check = await auth.canCheckBiometrics;
-    if(check==true)
+    if(check)
       {
         List<BiometricType> l1 = await auth.getAvailableBiometrics();
         if(l1.isNotEmpty)
           {
-            final bool mainV = await auth.authenticate(
+            mainV = await auth.authenticate(
                 localizedReason: 'Please authenticate to show account balance',
-                options: const AuthenticationOptions(biometricOnly: true));
+                options: const AuthenticationOptions(useErrorDialogs: true));
             return mainV;
           }
       }
+    return null;
 
+  }
+  void createHidden(int index)
+  {
+    hiddenContactList.add(contactList[index]);
+    contactList.removeAt(index);
     notifyListeners();
+
   }
 }

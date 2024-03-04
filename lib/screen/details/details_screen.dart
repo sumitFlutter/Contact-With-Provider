@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../model/contact_model.dart';
@@ -57,98 +58,107 @@ class _DetailsScreenState extends State<DetailsScreen> {
           width: MediaQuery.sizeOf(context).width,
           margin: const EdgeInsets.all(15),
           padding: const EdgeInsets.all(15),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        child: providerR!.contactList[index].image=="assets/image/profile.png"
-                            ?
-                        const Center(
-                          child: CircleAvatar(
-                            radius: 60,
-                            backgroundImage: AssetImage("assets/image/profile.png"),
-                          ),
-                        ): Center(
-                          child: CircleAvatar(
-                            radius: 60,
-                            backgroundImage: FileImage(File("${providerR!.contactList[index].image}")),
-                          ),
-                        ),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    child: providerR!.contactList[index].image=="assets/image/profile.png"
+                        ?
+                    const Center(
+                      child: CircleAvatar(
+                        radius: 60,
+                        backgroundImage: AssetImage("assets/image/profile.png"),
                       ),
-                      const SizedBox(height: 15,),
-                      Center(
-                        child: Text(
-                          "${providerR!.contactList[index].name}",
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 21),
-                        ),
+                    ): Center(
+                      child: CircleAvatar(
+                        radius: 60,
+                        backgroundImage: FileImage(File("${providerR!.contactList[index].image}")),
                       ),
-                      const SizedBox(height: 15,),
-                    ],
+                    ),
                   ),
-                ),
-                const SizedBox(height: 15,),
-                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        InkWell(
-                          onTap: () async{
-                            Uri mail= Uri.parse("mailto:${providerR!.contactList[index].email}");
-                            await launchUrl(mail);
-                          },
-                            child: const CircleAvatar(child: Icon(Icons.mail,size: 25,color: Colors.white,),backgroundColor: Colors.blue,radius: 20,)),
-                        const Text("email",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)
-                      ],
+                  const SizedBox(height: 15,),
+                  Center(
+                    child: Text(
+                      "${providerR!.contactList[index].name}",
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 21),
                     ),
-                    const Column(
-                      children: [
-                        CircleAvatar(child: Icon(Icons.message,size: 25,color: Colors.white,),backgroundColor: Colors.red,radius: 20,),
-                        Text("Video Call",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        InkWell(onTap: () async {
-                          Uri call= Uri.parse("tel:+91${providerR!.contactList[index].mobile}");
-                          await launchUrl(call);
-                        },
-                            child: const CircleAvatar(child: Icon(Icons.call,size: 25,color: Colors.white,),backgroundColor: Colors.green,radius: 20,)),
-                        const Text("Call",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 15,),
-                const Align(
-                  alignment: AlignmentDirectional.topStart,
-                    child: Text("NOW",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)),
-                Row(children: [
+                  ),
+                  const SizedBox(height: 15,),
+                ],
+              ),
+              const SizedBox(height: 15,),
+               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
                   Column(
                     children: [
-                      Text("${providerR!.contactList[index].mobile}",style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-                      Text("${providerR!.contactList[index].email}",style: const TextStyle(fontSize: 15),),
+                      InkWell(
+                        onTap: () async{
+                          Uri mail= Uri.parse("mailto:${providerR!.contactList[index].email}");
+                          await launchUrl(mail);
+                        },
+                          child: const CircleAvatar(child: Icon(Icons.mail,size: 25,color: Colors.white,),backgroundColor: Colors.blue,radius: 20,)),
+                      const Text("email",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)
                     ],
                   ),
-                  const Spacer(),
-                  IconButton.filledTonal(onPressed:() async{
-                    Uri call= Uri.parse("tel:+91${providerR!.contactList[index].mobile}");
-                    await launchUrl(call);
-                  },  icon: const Icon(Icons.call)),
-                  const SizedBox(width: 15,),
-                  IconButton.filledTonal(onPressed:() async{
-                    Uri msg= Uri.parse("sms:+91${providerR!.contactList[index].mobile}");
-                    await launchUrl(msg);
-                  },  icon: const Icon(Icons.message)),
-                ],)
-              ],
-            ),
+                  const Column(
+                    children: [
+                      CircleAvatar(child: Icon(Icons.message,size: 25,color: Colors.white,),backgroundColor: Colors.red,radius: 20,),
+                      Text("Video Call",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      InkWell(onTap: () async {
+                        Uri call= Uri.parse("tel:+91${providerR!.contactList[index].mobile}");
+                        await launchUrl(call);
+                      },
+                          child: const CircleAvatar(child: Icon(Icons.call,size: 25,color: Colors.white,),backgroundColor: Colors.green,radius: 20,)),
+                      const Text("Call",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 15,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("NOW",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                  IconButton.filledTonal(onPressed: () {
+                    Share.share("${providerR!.contactList[index].name}\n${providerR!.contactList[index].mobile}");
+                  }, icon: Icon(Icons.share)),
+                ],
+              ),
+              Row(children: [
+                Column(
+                  children: [
+                    Text("+91 ${providerR!.contactList[index].mobile}",style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                    Text("${providerR!.contactList[index].email}",style: const TextStyle(fontSize: 15),),
+                  ],
+                ),
+                Spacer(),
+                IconButton.filledTonal(onPressed:() async{
+                  Uri call= Uri.parse("tel:+91${providerR!.contactList[index].mobile}");
+                  await launchUrl(call);
+                },  icon: const Icon(Icons.call)),
+                const SizedBox(width: 15,),
+                IconButton.filledTonal(onPressed:() async{
+                  Uri msg= Uri.parse("sms:+91${providerR!.contactList[index].mobile}");
+                  await launchUrl(msg);
+                },  icon: const Icon(Icons.message)),
+              ],),
+              Spacer(),
+              BottomAppBar(child:  Center(
+                child: IconButton(onPressed: () {
+                  providerR!.createHidden(index);
+                  Navigator.pop(context);
+                },icon: Icon(Icons.lock),),
+              ),)
+            ],
           ),
         )
     ));
